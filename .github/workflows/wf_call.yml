@@ -1,0 +1,7 @@
+name: Check branch name
+on:
+  workflow_dispatch:
+
+jobs:
+  check-branch-name:
+    uses: niteshparikh/terra-git-repo/.github/workflows/schema.yml@latest
