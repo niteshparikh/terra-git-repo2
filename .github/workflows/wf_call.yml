@@ -1,7 +1,30 @@
-name: Check branch name
+name: Trigger Snowflake Schema Swap
+
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Allows manual trigger of this workflow
+    inputs:
+      REQUESTED_BY:
+        type: string
+        description: 'Requestor user name.'
+        required: true
+      SOURCE_OBJECT:
+        type: string
+        description: 'Source object for schema swap.'
+        required: true
+      TARGET_OBJECT:
+        type: string
+        description: 'Target object for schema swap.'
+        required: true
+      BRANCH_NAME:
+        type: string
+        description: 'The branch to checkout for schema swap operations.'
+        required: true
 
 jobs:
-  check-branch-name:
-    uses: niteshparikh/terra-git-repo/.github/workflows/schema.yml@main
+  call-schema-swap-workflow:
+    uses: niteshparikh/terra-git-repo/.github/workflows/snowflake-schema-swap.yml@main  # Reference to your reusable workflow
+    with:
+      REQUESTED_BY: ${{ inputs.REQUESTED_BY }}
+      SOURCE_OBJECT: ${{ inputs.SOURCE_OBJECT }}
+      TARGET_OBJECT: ${{ inputs.TARGET_OBJECT }}
+      BRANCH_NAME: ${{ inputs.BRANCH_NAME }}
