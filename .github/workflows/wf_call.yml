@@ -4,4 +4,4 @@ on:
 
 jobs:
   check-branch-name:
-    uses: niteshparikh/terra-git-repo/.github/workflows/schema.yml@latest
+    uses: niteshparikh/terra-git-repo/.github/workflows/schema.yml
